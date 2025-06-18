@@ -1,0 +1,159 @@
+<body>
+  <h1>Generator Prompt Veo 3</h1>
+
+  <label>Karakter utama:</label>
+  <input type="text" id="character" placeholder="Contoh: Ibu-ibu Indonesia berusia 35 tahun">
+
+  <label>Lokasi/Tempat:</label>
+  <input type="text" id="location" placeholder="Contoh: di dalam helikopter yang sedang terbang">
+
+  <label>Aksi atau gerakan:</label>
+  <input type="text" id="action" placeholder="Contoh: berdiri sambil memegang besi pembatas">
+
+  <label>Dialog:</label>
+  <textarea id="dialog" rows="3" placeholder='Contoh: "Stop! Kayaknya itu sekolahnya, mau daftarin anak!"'></textarea>
+
+  <label>Durasi (detik):</label>
+  <input type="number" id="duration" placeholder="Contoh: 8">
+
+  <label>Rasio Aspek:</label>
+  <select id="aspect">
+    <option value="16:9">16:9 (wide)</option>
+    <option value="9:16">9:16 (vertical)</option>
+    <option value="1:1">1:1 (square)</option>
+  </select>
+
+  <label>Gaya Video:</label>
+  <select id="style">
+    <option value="komedi">Komedi</option>
+    <option value="sinematik">Sinematik</option>
+    <option value="dramatis">Dramatis</option>
+    <option value="viral">Viral TikTok</option>
+  </select>
+
+  <label>Visual Video:</label>
+  <select id="visual">
+    <option value="natural light, cinematic camera movement, shallow depth of field">Natural sinematik</option>
+    <option value="fast cuts, shaky cam, vibrant colors">Enerjik & cepat</option>
+    <option value="smooth tracking shot, backlight, soft bokeh">Lembut & dramatis</option>
+    <option value="first-person POV, grainy filter, fast zoom">POV Sosial Media</option>
+  </select>
+
+  <label>Sudut Kamera:</label>
+  <select id="angle">
+    <option value="eye-level">Eye-level</option>
+    <option value="low angle">Low angle</option>
+    <option value="high angle">High angle</option>
+    <option value="over-the-shoulder">Over the shoulder</option>
+    <option value="wide shot">Wide shot</option>
+    <option value="close-up">Close-up</option>
+  </select>
+
+  <label>Gerakan Kamera:</label>
+  <select id="cameraMovement">
+    <option value="tracking shot">Tracking shot</option>
+    <option value="handheld shot">Handheld shot</option>
+    <option value="zoom-in slow">Zoom-in pelan</option>
+    <option value="pan left to right">Pan kiri ke kanan</option>
+    <option value="static shot">Statis</option>
+  </select>
+
+  <label>Pencahayaan:</label>
+  <select id="lighting">
+    <option value="natural daylight">Cahaya alami siang</option>
+    <option value="soft warm lighting">Cahaya hangat dan lembut</option>
+    <option value="dramatic shadow lighting">Pencahayaan bayangan dramatis</option>
+    <option value="studio light setup">Lampu studio profesional</option>
+  </select>
+
+  <label>Suasana:</label>
+  <select id="atmosphere">
+    <option value="ceria dan positif">Ceria dan positif</option>
+    <option value="menegangkan dan serius">Menegangkan dan serius</option>
+    <option value="melankolis dan emosional">Melankolis dan emosional</option>
+    <option value="lucu dan santai">Lucu dan santai</option>
+  </select>
+
+  <label>Bahasa Dialog:</label>
+  <select id="language">
+    <option value="bahasa Indonesia">Indonesia</option>
+    <option value="bahasa Jawa">Jawa</option>
+    <option value="bahasa Minang">Minang</option>
+    <option value="bahasa Sunda">Sunda</option>
+    <option value="bahasa Papua">Papua</option>
+    <option value="bahasa Makassar">Makasar</option>
+    <option value="bahasa Betawi">Betawi</option>
+  </select>
+
+  <label>Waktu Kejadian:</label>
+  <select id="time">
+    <option value="pagi">Pagi</option>
+    <option value="siang">Siang</option>
+    <option value="malam">Malam</option>
+  </select>
+
+  <label>Cuaca:</label>
+  <select id="weather">
+    <option value="cerah">Cerah</option>
+    <option value="berawan">Berawan</option>
+    <option value="hujan">Hujan</option>
+    <option value="mendung">Mendung</option>
+  </select>
+
+  <label>Musik Latar:</label>
+  <select id="music">
+    <option value="musik lembut dan emosional">Lembut & Emosional</option>
+    <option value="musik energik dan cepat">Enerjik & Cepat</option>
+    <option value="musik tradisional Indonesia">Tradisional Indonesia</option>
+    <option value="musik dramatis dan membangun ketegangan">Dramatis & Tegang</option>
+  </select>
+
+  <button onclick="generatePrompt()">Buat Prompt</button>
+  <button onclick="copyPrompt()">Salin Prompt</button>
+  <button onclick="savePrompt()">Simpan sebagai TXT</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generatePrompt() {
+      const char = document.getElementById("character").value;
+      const loc = document.getElementById("location").value;
+      const act = document.getElementById("action").value;
+      const dialog = document.getElementById("dialog").value;
+      const dur = document.getElementById("duration").value;
+      const aspect = document.getElementById("aspect").value;
+      const style = document.getElementById("style").value;
+      const visual = document.getElementById("visual").value;
+      const angle = document.getElementById("angle").value;
+      const cameraMovement = document.getElementById("cameraMovement").value;
+      const lighting = document.getElementById("lighting").value;
+      const atmosphere = document.getElementById("atmosphere").value;
+      const language = document.getElementById("language").value;
+      const time = document.getElementById("time").value;
+      const weather = document.getElementById("weather").value;
+      const music = document.getElementById("music").value;
+
+      const prompt = `Prompt Veo 3 berdurasi ${dur} detik dengan aspek rasio ${aspect}, gaya ${style}, suasana ${atmosphere}, pada waktu ${time}, cuaca ${weather}:\n` +
+        `${char} ${loc}, ${act}.\n` +
+        `Kamera dengan sudut ${angle}, gerakan kamera: ${cameraMovement}.\n` +
+        `Visual: ${visual}. Pencahayaan: ${lighting}. Musik latar: ${music}.\n` +
+        `Karakter berkata dalam ${language}: ${dialog}`;
+
+      document.getElementById("output").innerHTML = `<strong>Hasil Prompt:</strong><br><pre id='promptText'>${prompt}</pre>`;
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById("promptText").innerText;
+      navigator.clipboard.writeText(text).then(() => alert("Prompt disalin ke clipboard!"));
+    }
+
+    function savePrompt() {
+      const text = document.getElementById("promptText").innerText;
+      const blob = new Blob([text], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "prompt-veo3.txt";
+      link.click();
+    }
+  </script>
+</body>
